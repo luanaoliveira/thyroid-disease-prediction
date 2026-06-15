@@ -1,94 +1,101 @@
-# Thyroid Disease Prediction
+# Diagnóstico de Doenças da Tireoide com Machine Learning
 
-Final Data Science project developed for the EBAC course **Profissão: Cientista de Dados**.
-The objective of this project is to build a Machine Learning model capable of supporting the diagnosis of thyroid-related conditions based on clinical, historical, and laboratory data.
+Projeto final desenvolvido no curso **Profissão: Cientista de Dados — EBAC**, com o objetivo de construir um modelo de Machine Learning para apoiar a classificação de diagnósticos relacionados a doenças da tireoide.
 
-## Project Context
+## English Summary
 
-This project simulates a real-world Data Science scenario in which a stakeholder from the medical field needs a predictive model to support the diagnosis of thyroid diseases.
+Final Data Science project focused on predicting thyroid disease diagnosis using Machine Learning techniques. The project includes data preprocessing, exploratory data analysis, model comparison, hyperparameter tuning and final model interpretation.
 
-The dataset contains patient information such as demographic data, medical history, medication usage, symptoms, and laboratory exam results. The main goal is to identify patterns in the data and build a classification model with strong predictive performance.
+## Contexto do Projeto
 
-## Objective
+Este projeto simula uma situação real de Ciência de Dados, em que uma stakeholder da área médica solicita uma solução capaz de auxiliar na análise de diagnósticos relacionados à tireoide.
 
-The objective of this project is to develop a classification model capable of predicting the target variable `binaryClass`, supporting the analysis of thyroid-related diagnoses.
+A base de dados contém informações clínicas, históricas, demográficas e laboratoriais de pacientes. A proposta é identificar padrões nos dados e desenvolver um modelo de classificação com bom desempenho preditivo.
 
-Since this is a healthcare-related problem, the model evaluation considers not only accuracy, but also precision, recall, F1-score and confusion matrix.
+## Objetivo
 
-## Dataset
+O objetivo principal deste projeto é desenvolver um modelo de classificação capaz de prever a variável-alvo `binaryClass`, utilizando informações dos pacientes e exames laboratoriais.
 
-The dataset used in this project is:
+Como o problema está relacionado à área da saúde, a avaliação do modelo não foi baseada apenas na acurácia. Também foram consideradas métricas como precisão, recall, F1-score e matriz de confusão, com atenção especial ao equilíbrio entre as classes.
+
+## Base de Dados
+
+A base utilizada no projeto foi:
 
 ```text
 Base_M43_Pratique_Hypothyroid.csv
 ```
 
-The dataset contains:
+O conjunto de dados possui:
 
-* 3,772 records
-* Clinical and demographic variables
-* Laboratory exam results
-* Categorical and numerical features
-* Target variable: `binaryClass`
+* 3.772 registros;
+* 30 variáveis inicialmente;
+* variáveis clínicas e demográficas;
+* informações sobre histórico médico e uso de medicamentos;
+* resultados de exames laboratoriais;
+* variável-alvo: `binaryClass`.
 
-## Project Steps
+## Etapas do Projeto
 
-The project was developed following the main steps of a Data Science workflow:
+O projeto foi desenvolvido seguindo as principais etapas de um fluxo de Ciência de Dados:
 
-1. Problem understanding
-2. Data loading
-3. Initial data analysis
-4. Missing value treatment
-5. Data type conversion
-6. Exploratory Data Analysis
-7. Data preprocessing
-8. Train-test split
-9. Model training
-10. Model evaluation
-11. Hyperparameter tuning
-12. Final model interpretation
-13. Stakeholder recommendations
+1. Entendimento do problema;
+2. Carregamento da base de dados;
+3. Análise inicial dos dados;
+4. Tratamento de valores ausentes;
+5. Conversão de tipos de dados;
+6. Análise exploratória de dados;
+7. Pré-processamento para modelagem;
+8. Divisão entre treino e teste;
+9. Treinamento de modelos;
+10. Avaliação dos modelos;
+11. Ajuste de hiperparâmetros;
+12. Interpretação do modelo final;
+13. Recomendações para o stakeholder;
+14. Conclusão final.
 
-## Data Preparation
+## Tratamento e Preparação dos Dados
 
-During the data preparation stage, the following treatments were applied:
+Durante a etapa de preparação dos dados, foram realizados os seguintes tratamentos:
 
-* Missing values represented by `"?"` were replaced with `NaN`
-* The `TBG` column was removed because all its values were missing
-* Numerical variables were converted from text to numeric format
-* Missing numerical values were filled with the median
-* Missing categorical values were filled with the mode
-* An inconsistent age value above 120 years was treated as missing and replaced with the median
-* Categorical variables were encoded using One-Hot Encoding
+* Substituição dos valores `"?"` por `NaN`;
+* Remoção da coluna `TBG`, pois todos os seus registros estavam ausentes;
+* Conversão das variáveis numéricas que estavam armazenadas como texto;
+* Tratamento de valor inconsistente na variável `age`;
+* Preenchimento de valores ausentes numéricos com a mediana;
+* Preenchimento de valores ausentes categóricos com a moda;
+* Codificação das variáveis categóricas com One-Hot Encoding.
 
-## Exploratory Data Analysis
+Após o tratamento, a base ficou adequada para a análise exploratória e para a etapa de modelagem.
 
-The exploratory analysis showed that the target variable is highly imbalanced:
+## Análise Exploratória de Dados
 
-* Class `P`: approximately 92.28%
-* Class `N`: approximately 7.71%
+Durante a análise exploratória, foi identificado um forte desbalanceamento na variável-alvo:
 
-Because of this imbalance, the model evaluation focused on metrics that better represent performance across both classes, especially macro precision, macro recall and macro F1-score.
+* Classe `P`: aproximadamente 92,28%;
+* Classe `N`: aproximadamente 7,71%.
 
-The analysis also showed that laboratory variables such as `TSH`, `FTI`, `TT4` and `T3` were relevant for the classification task.
+Esse desbalanceamento tornou necessário avaliar os modelos com métricas além da acurácia, como precisão macro, recall macro e F1-score macro.
 
-## Models Evaluated
+Também foram analisadas as distribuições das variáveis numéricas, boxplots, variáveis categóricas e correlações com a variável-alvo. A análise indicou que variáveis laboratoriais como `TSH`, `FTI`, `TT4` e `T3` apresentam relevância para a classificação.
 
-The following classification models were tested:
+## Modelos Avaliados
 
-* Logistic Regression
-* Decision Tree
-* Random Forest
-* Support Vector Machine
-* Gradient Boosting
+Foram avaliados os seguintes modelos de classificação:
 
-Models sensitive to feature scale, such as Logistic Regression and SVM, were trained using standardized data.
+* Regressão Logística;
+* Árvore de Decisão;
+* Random Forest;
+* Support Vector Machine;
+* Gradient Boosting.
 
-## Final Model
+Os modelos sensíveis à escala dos dados, como Regressão Logística e SVM, foram treinados com os dados padronizados.
 
-The selected final model was **Gradient Boosting**, after hyperparameter tuning with GridSearchCV.
+## Modelo Final
 
-Best hyperparameters:
+O modelo escolhido para a solução final foi o **Gradient Boosting**, após ajuste de hiperparâmetros com `GridSearchCV`.
+
+Os melhores hiperparâmetros encontrados foram:
 
 ```text
 learning_rate = 0.05
@@ -96,50 +103,69 @@ max_depth = 4
 n_estimators = 50
 ```
 
-## Final Results
+A escolha do modelo foi baseada principalmente no **F1-score macro**, pois essa métrica considera o desempenho das classes de forma equilibrada, sendo mais adequada para bases desbalanceadas.
 
-The final model achieved the following performance on the test set:
+## Resultados Finais
 
-| Metric            | Result |
-| ----------------- | -----: |
-| Accuracy          | 99.60% |
-| Macro Precision   | 98.23% |
-| Macro Recall      | 98.99% |
-| Macro F1-score    | 98.61% |
-| Weighted F1-score | 99.60% |
+O modelo final apresentou os seguintes resultados no conjunto de teste:
 
-The confusion matrix showed that the final model made only 3 errors on the test set, indicating strong predictive performance even with class imbalance.
+| Métrica           | Resultado |
+| ----------------- | --------: |
+| Acurácia          |    99,60% |
+| Precisão Macro    |    98,23% |
+| Recall Macro      |    98,99% |
+| F1-score Macro    |    98,61% |
+| F1-score Weighted |    99,60% |
 
-## Feature Importance
+A matriz de confusão mostrou que o modelo final cometeu apenas 3 erros em 755 registros do conjunto de teste, indicando alto desempenho preditivo mesmo diante do desbalanceamento entre as classes.
 
-The most important variable for the final model was `TSH`, followed by variables such as:
+## Interpretação dos Resultados
 
-* `on thyroxine`
-* `FTI`
-* `TT4`
-* `thyroid surgery`
-* `T4U`
-* `T3`
+A análise de importância das variáveis mostrou que o exame `TSH` foi o principal atributo utilizado pelo modelo.
 
-These results suggest that laboratory exams and clinical history related to thyroid function played an important role in the model predictions.
+Outras variáveis relevantes foram:
 
-## Conclusion
+* `on thyroxine`;
+* `FTI`;
+* `TT4`;
+* `thyroid surgery`;
+* `T4U`;
+* `T3`.
 
-The final model showed strong performance in predicting thyroid-related diagnoses. The Gradient Boosting model achieved high accuracy, recall and F1-score, even in a highly imbalanced dataset.
+Esses resultados indicam que exames laboratoriais e informações clínicas relacionadas à tireoide tiveram papel importante na classificação realizada pelo modelo.
 
-However, since this project is related to healthcare, the model should be used only as a decision-support tool and not as a substitute for medical evaluation. In a real-world scenario, additional validation with new clinical data would be necessary before practical use.
+## Recomendações para o Stakeholder
 
-## Technologies Used
+O modelo apresentou desempenho elevado e pode ser considerado uma ferramenta de apoio à decisão clínica.
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Scikit-learn
-* Jupyter Notebook
+No entanto, por se tratar de um problema relacionado à área da saúde, recomenda-se que o modelo seja utilizado apenas como suporte à análise médica, e não como substituto da avaliação de profissionais especializados.
 
-## Repository Structure
+Em um contexto real, seria necessário validar o modelo com novos dados, acompanhar seu desempenho ao longo do tempo e revisar periodicamente suas previsões.
+
+Também é importante confirmar o significado clínico das classes `P` e `N` com o stakeholder ou com a documentação da base, garantindo que a interpretação dos resultados esteja alinhada ao diagnóstico correto.
+
+## Conclusão
+
+O projeto cumpriu o objetivo proposto ao desenvolver uma solução completa de Ciência de Dados para apoiar a classificação de diagnósticos relacionados à tireoide.
+
+Foram realizadas etapas de entendimento do problema, preparação dos dados, análise exploratória, treinamento de diferentes modelos, avaliação de desempenho, ajuste de hiperparâmetros e interpretação dos resultados.
+
+O modelo final, Gradient Boosting ajustado, apresentou acurácia de aproximadamente 99,60% e F1-score macro de aproximadamente 98,61%, demonstrando forte capacidade preditiva.
+
+Apesar dos bons resultados, a aplicação prática do modelo exigiria validações adicionais com dados reais e acompanhamento por profissionais da área médica.
+
+## Tecnologias Utilizadas
+
+* Python;
+* Pandas;
+* NumPy;
+* Matplotlib;
+* Seaborn;
+* Scikit-learn;
+* Jupyter Notebook;
+* Git e GitHub.
+
+## Estrutura do Repositório
 
 ```text
 thyroid-disease-prediction/
@@ -151,6 +177,6 @@ thyroid-disease-prediction/
 └── .gitignore
 ```
 
-## Author
+## Autora
 
-Developed by Luana Oliveira as part of the EBAC Data Science final project.
+Desenvolvido por **Luana Oliveira** como projeto final do curso **Profissão: Cientista de Dados - EBAC**.
